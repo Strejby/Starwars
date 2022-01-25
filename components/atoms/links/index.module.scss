@@ -1,0 +1,10 @@
+.link {
+    font-weight: 500;
+    color: #ffffff;
+    &:hover {
+        color: darken(white, 50%);
+    }
+}
+.link_primary {
+    color: #ffffff;
+}
