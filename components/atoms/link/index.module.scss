@@ -1,0 +1,13 @@
+@use '../../../styles/scss/variables' as *;
+
+.link {
+    font-weight: 500;
+    letter-spacing: 0.05rem;
+    color: darken($white, 10%);
+    &:hover {
+        color: $white;
+    }
+}
+.link_primary {
+    color: #ffffff;
+}
