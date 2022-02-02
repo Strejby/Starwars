@@ -1,6 +1,6 @@
 import React from "react";
 
-// Library imports.
+// Bibliotek imports.
 import PropTypes from "prop-types";
 
 // Scss style.
@@ -20,4 +20,5 @@ function IconButton({ type, children }) {
     return <button type={type}>{children}</button>;
 }
 
+// Export begge components/atoms.
 export { Button, IconButton };

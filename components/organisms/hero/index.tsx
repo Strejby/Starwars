@@ -1,7 +1,5 @@
 import React from "react";
 
-function Vechicles() {
+export default function Hero() {
     return <div></div>;
 }
-
-export default Vechicles;

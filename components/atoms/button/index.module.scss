@@ -1,5 +1,7 @@
-@use '../../../styles/scss/variables' as *;
+// Variables import.
+@use "../../../styles/scss/variables" as *;
 
+// Standart button style.
 .btn {
     text-align: center;
     font-weight: 500;
@@ -13,6 +15,7 @@
     text-transform: capitalize;
     transition: all 0.1s ease-in-out;
 
+    // Button hover.
     &:hover {
         transform: scale(1.05);
         background-color: $secondary;
@@ -20,12 +23,14 @@
             rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     }
 
+    // Button active.
     &:active {
         transform: scale(0.95);
         background-color: #f87171;
     }
 }
 
+// Standart icon button style.
 .icon_button {
     padding: 1rem;
 
@@ -34,12 +39,14 @@
 
     transition: all 0.1s ease-in-out;
 
+    // Icon button hover.
     &:hover {
         transform: scale(1.05);
         box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
             rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
     }
 
+    // Icon button active.
     &:active {
         transform: scale(0.95);
     }

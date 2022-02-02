@@ -1,7 +1,5 @@
 import React from "react";
 
-function Characters() {
+export default function Header() {
     return <div></div>;
 }
-
-export default Characters;

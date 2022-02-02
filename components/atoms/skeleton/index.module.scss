@@ -1,5 +1,7 @@
-@use '../../../styles/scss/variables' as *;
+// Variables import.
+@use "../../../styles/scss/variables" as *;
 
+// Skeleton style.
 .skeleton {
     width: $width;
     height: $height;
@@ -9,6 +11,7 @@
         right/300% 100%;
     animation: skeleton_animation 1s linear infinite;
 
+    // Export variabler til react brug.
     &:export {
         width: $width;
         height: $height;

@@ -1,5 +1,7 @@
-@use '../../../styles/scss/variables' as *;
+// Variables import.
+@use "../../../styles/scss/variables" as *;
 
+// Standart link style.
 .link {
     font-weight: 500;
     letter-spacing: 0.05rem;
@@ -8,6 +10,7 @@
         color: $white;
     }
 }
+
 .link_primary {
     color: #ffffff;
 }

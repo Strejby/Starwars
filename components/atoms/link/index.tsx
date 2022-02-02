@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-// Library imports.
+// Bibliotek imports.
 import PropTypes from "prop-types";
 
 // Scss style.

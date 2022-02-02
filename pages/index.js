@@ -1,44 +1,72 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-const defaultEndPoint = "https://swapi.dev/api/people/";
+const dataTypes = ["films", "people", "planets", "species", "vehicles"];
 
-export async function getData() {
-    //Utility Functions for fetch
-    const urls = [
-        "https://swapi.co/api/planets/",
-        "https://swapi.co/api/films/",
-        "https://swapi.co/api/people/",
-    ];
-    const checkStatus = (res) =>
-        res.ok
-            ? Promise.resolve(res)
-            : Promise.reject(new Error(res.statusText));
-    const parseJSON = (response) => response.json();
+export default function App() {
+    const [swapiData, setSwapiData] = useState(null);
+    const [category, setCategory] = useState(null);
+    const [search, setSearch] = useState("");
 
-    // Get a single endpoint.
-    const getPage = (url) =>
-        fetch(url)
-            .then(checkStatus)
-            .then(parseJSON)
-            .catch((error) => console.log("There was a problem!", error));
-
-    // Keep getting the pages until the next key is null.
-    const getAllPages = async (url, collection = []) => {
-        const { results, next } = await getPage(url);
-        collection = [...collection, ...results];
-        if (next !== null) {
-            return getAllPages(next, collection);
-        }
-        return collection;
+    const getData = async (type) => {
+        setCategory(type);
+        const response = await fetch(`https://swapi.dev/api/${type}/`);
+        const data = await response.json();
+        setSwapiData(data);
     };
 
-    // Select data out of all the pages gotten.
-    const [planets, films, people] = await Promise.all(
-        urls.map((url) => getAllPages(url))
-    );
-    buildData(films, planets, people);
-}
+    const getPage = async (url) => {
+        const newUrl = url;
+        const response = await fetch(newUrl);
+        const data = await response.json();
+        setSwapiData(data);
+    };
 
-export default function index({ data }) {
-    return <>{data}</>;
+    const handleSearch = async () => {
+        const response = await fetch(
+            `https://swapi.dev/api/${category}/?search=${search}`
+        );
+        const data = await response.json();
+        setSwapiData(data);
+    };
+
+    return (
+        <>
+            {dataTypes.map((type) => (
+                <button name={type} onClick={(e) => getData(e.target.name)}>
+                    {type}
+                </button>
+            ))}
+            <div>Results: {swapiData && swapiData.count}</div>
+            {swapiData &&
+                swapiData.results.map((item) =>
+                    category === "films" ? (
+                        <p>{item.title}</p>
+                    ) : (
+                        <p>{item.name}</p>
+                    )
+                )}
+            {swapiData && (swapiData.next || swapiData.previous) ? (
+                <div>
+                    <button
+                        disabled={!swapiData.previous}
+                        onClick={() => getPage(swapiData.previous)}
+                    >
+                        Previous page
+                    </button>
+                    <button
+                        disabled={!swapiData.next}
+                        onClick={() => getPage(swapiData.next)}
+                    >
+                        Next page
+                    </button>
+                </div>
+            ) : null}
+            <input
+                type="text"
+                placeholder="search"
+                onChange={(e) => setSearch(e.target.value)}
+            />
+            <button onClick={(e) => handleSearch(e.target.name)}>Search</button>
+        </>
+    );
 }

@@ -1,7 +1,5 @@
 import React from "react";
 
-function Starships() {
+export default function Navigation() {
     return <div></div>;
 }
-
-export default Starships;
