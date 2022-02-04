@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Typography from "../components/atoms/typography";
 
 const dataTypes = ["films", "people", "planets", "species", "vehicles"];
 
@@ -67,6 +68,7 @@ export default function App() {
                 onChange={(e) => setSearch(e.target.value)}
             />
             <button onClick={(e) => handleSearch(e.target.name)}>Search</button>
+            <Typography as="p">Hej</Typography>
         </>
     );
 }
