@@ -1,8 +1,9 @@
 import React from "react";
-import Header from "../components/molecules/header";
+import Header from "../components/organisms/header";
+import Search from "../components/molecules/search";
 
 function test() {
-    return <Header />;
+    return <Search />;
 }
 
 export default test;

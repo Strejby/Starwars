@@ -11,11 +11,16 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(" ");
 }
 
-// Link Component/atom.
-export default function Links({ href, style, children }) {
+// Link component/atom.
+export default function Links(props) {
     return (
-        <Link href={href}>
-            <a className={classNames(styles.link, `${style}`)}>{children}</a>
+        <Link href={props.href}>
+            <a
+                target={props.target}
+                className={classNames(styles.link, `${props.style}`)}
+            >
+                {props.children}
+            </a>
         </Link>
     );
 }
@@ -23,10 +28,13 @@ export default function Links({ href, style, children }) {
 // Prop typer specifikationer.
 Links.propTypes = {
     href: PropTypes.string.isRequired,
-    style: PropTypes.string,
+    children: PropTypes.any.isRequired,
+    target: PropTypes.string,
+    style: PropTypes.any,
 };
 
-// Standard styling.
+// Standard styling/specifikationer.
 Links.defaultProps = {
     style: styles.link_primary,
+    target: "_self",
 };
